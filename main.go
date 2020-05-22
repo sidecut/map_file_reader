@@ -101,9 +101,8 @@ func main() {
 func removeWebpackPrefix(filename string) string {
 	if strings.Index(filename, webpackPrefix) == 0 {
 		return filename[len(webpackPrefix):]
-	} else {
-		return filename
 	}
+	return filename
 }
 
 func outputFiles(mapping mappingStruct, index int, outputDir string) {
