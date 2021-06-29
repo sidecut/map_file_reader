@@ -37,3 +37,4 @@
 .history
 
 # End of https://www.gitignore.io/api/go,code,visualstudiocode
+build
