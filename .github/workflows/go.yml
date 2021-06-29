@@ -19,7 +19,7 @@ jobs:
         go-version: 1.16
 
     - name: Build
-      run:
+      run: |
         go build -v ./...
         GOOS=darwin go build -v ./... -o map_file_reader_macOS
         GOOS=windows go build -v ./... -o map_file_reader.exe
