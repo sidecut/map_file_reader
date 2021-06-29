@@ -21,8 +21,8 @@ jobs:
     - name: Build
       run: |
         go build -v ./...
-        GOOS=darwin go build -v ./... -o map_file_reader_macOS
-        GOOS=windows go build -v ./... -o map_file_reader.exe
+          env GOOS=darwin go build -v ./... -o map_file_reader_macOS
+          env GOOS=windows go build -v ./... -o map_file_reader.exe
 
     - name: Test
       run: go test -v ./...
