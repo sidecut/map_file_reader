@@ -2,12 +2,13 @@ package main
 
 import (
 	"encoding/json"
-	"flag"
 	"fmt"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/spf13/pflag"
 )
 
 const webpackPrefix = "webpack://"
@@ -23,15 +24,15 @@ type mappingStruct struct {
 }
 
 func main() {
-	filename := flag.String("f", "", "Input filename, or use stdin if not present")
-	summary := flag.Bool("s", false, "Output summary")
-	outputDir := flag.String("dir", ".", "Output extracted source to this directory")
-	index := flag.Int("i", -1, "Array index to output")
-	showName := flag.Bool("n", false, "Output source name")
-	showContent := flag.Bool("c", false, "Output sourcesContent")
-	showSources := flag.Bool("sources", false, "Show all source names")
-	doOutputFiles := flag.Bool("o", false, "Output one file, if index has been set, or all files, if it hasn't")
-	flag.Parse()
+	filename := pflag.StringP("file", "f", "", "Input filename, or use stdin if not present")
+	summary := pflag.BoolP("summary", "s", false, "Output summary")
+	outputDir := pflag.String("dir", ".", "Output extracted source to this directory")
+	index := pflag.IntP("index", "i", -1, "Array index to output")
+	showName := pflag.BoolP("name", "n", false, "Output source name")
+	showContent := pflag.BoolP("content", "c", false, "Output sourcesContent")
+	showSources := pflag.Bool("sources", false, "Show all source names")
+	doOutputFiles := pflag.BoolP("onefile", "o", false, "Output one file, if index has been set, or all files, if it hasn't")
+	pflag.Parse()
 
 	var inputFile *os.File
 	if *filename == "" {
